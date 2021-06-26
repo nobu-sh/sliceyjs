@@ -1,0 +1,66 @@
+{
+  "name": "sliceyjs",
+  "version": "1.0.0",
+  "description": "💫 SliceyJS is clustering and sharding utility for DJS",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": [
+      {
+        "require": "./lib/index.js",
+        "import": "./esm/slicey.mjs"
+      },
+      "./lib/index.js"
+    ],
+    "./esm": "./esm/slicey.mjs"
+  },
+  "files": [
+    "lib",
+    "types"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NobUwU/sliceyjs.git"
+  },
+  "author": {
+    "name": "Nobu",
+    "discord": "Nobu#1122"
+  },
+  "keywords": [
+    "djs",
+    "discord",
+    "discord.js",
+    "cluster",
+    "shard",
+    "clusters",
+    "sharding",
+    "shards",
+    "bot"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint src/** --fix",
+    "prepack": "yarn run build && yarn run gen:esm",
+    "gen:esm": "gen-esm-wrapper ./lib/index.js ./esm/slicey.mjs",
+    "precommit": "echo 'pre-commit running linter...' && exit 0"
+  },
+  "pre-commit": [
+    "precommit",
+    "lint:fix"
+  ],
+  "devDependencies": {
+    "@types/node": "^15.12.4",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.29.0",
+    "gen-esm-wrapper": "^1.1.2",
+    "pre-commit": "^1.2.2",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
