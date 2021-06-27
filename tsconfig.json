@@ -6,8 +6,15 @@
     "outDir": "lib",
     "declaration": false,
     "removeComments": false,
-    "esModuleInterop": true
-  },
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "types/*": ["types/*"],
+      "src/*": ["src/*"],
+      "Client": ["src/Client"],
+      "cluster/*": ["src/cluster/*"]
+    }
+  },  
   "include": [
     "src",
   ],

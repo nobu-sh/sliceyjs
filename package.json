@@ -1,7 +1,7 @@
 {
   "name": "sliceyjs",
   "version": "1.0.0",
-  "description": "💫 SliceyJS is clustering and sharding utility for DJS",
+  "description": "💫 SliceyJS is a utility wrapper for DJS",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
