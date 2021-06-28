@@ -12,7 +12,7 @@
       "types/*": ["types/*"],
       "src/*": ["src/*"],
       "Client": ["src/Client"],
-      "cluster/*": ["src/cluster/*"]
+      "cluster/*": ["src/cluster/*"],
     }
   },  
   "include": [

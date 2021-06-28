@@ -1,4 +1,4 @@
 # SliceyJS
-DJS clustering and sharding utility
+DJS But Better
 
 **WIP**

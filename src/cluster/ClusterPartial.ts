@@ -1,23 +1,31 @@
 import {
   ClusterPartial as SliceyClusterPartial,
-  Client,
   ClusterUtilIPC,
   ProcessEventPartials,
 } from 'types/slicey'
 import IPC from './IPC'
-
+import Client from 'Client'
 class ClusterPartial implements SliceyClusterPartial {
   private _client: Client
-  public readonly shards: number
-  public readonly totalShards: number
-  public readonly firstShardId: number
-  public readonly lastShardId: number
-  public readonly id: number
-  public readonly totalClusters: number
+  // public readonly shards: number
+  public readonly totalShards: number = undefined
+  public readonly firstShardId: number = undefined
+  public readonly lastShardId: number = undefined
+  public readonly id: number = undefined
+  public readonly totalClusters: number = undefined
   public readonly ipc: ClusterUtilIPC = new IPC()
   private started = false
   constructor(client: Client) {
     this._client = client
+    // this.shards = process.env.slicey_
+    this.totalShards = parseInt(process.env.SLICEY_TOTAL_SHARDS)
+    this.firstShardId = parseInt(process.env.SLICEY_FIRST_SHARD_ID)
+    this.lastShardId = parseInt(process.env.SLICEY_LAST_SHARD_ID)
+    this.id = parseInt(process.env.SLICEY_CLUSTER_ID)
+    this.totalClusters = parseInt(process.env.SLICEY_TOTAL_CLUSTER)
+
+    // Alot of stuff based off of listening for responses
+    process.setMaxListeners(Infinity)
   }
   private errorHandle(): void {
     process.on('uncaughtException', (err) => {

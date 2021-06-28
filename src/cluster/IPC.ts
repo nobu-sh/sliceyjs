@@ -1,5 +1,6 @@
 import { EventEmitter } from "events"
 import {
+  ClusterStats,
   IPCEvent,
   IPCEventListener,
 } from 'types/slicey'
@@ -60,23 +61,38 @@ class IPC extends EventEmitter {
   public unregisterAll(): void {
     this._events = new Map()
   }
-  public broadcast(event: string, msg: unknown = {}): void {
+  public broadcast(event: string, msg?: unknown): void {
     process.send({
       payload: "broadcast",
       data: {
         event,
-        msg,
+        msg: msg || {},
       },
     })
   }
-  public sendTo(cluster: number, event: string, msg: unknown = {}): void {
+  public sendTo(cluster: number, event: string, msg?: unknown): void {
     process.send({
       payload: "sendTo",
       cluster,
       data: {
         event,
-        msg,
+        msg: msg || {},
       },
+    })
+  }
+  public async getAllStats(clusterId: number): Promise<ClusterStats[]> {
+    return new Promise((res) => {
+      const cb = (msg: IPCEvent) => {
+        if (msg.event === "IPCClusterUtilStatsRequest--default") {
+          res(msg.msg)
+          process.removeListener('message', cb)
+        }
+      }
+      process.on('message', cb)
+      process.send({
+        payload: "ipcStatsRequest",
+        cluster: clusterId,
+      })
     })
   }
 }

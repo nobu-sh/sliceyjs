@@ -1,28 +1,35 @@
 import {
   Client as DJSClient,
-  ClientOptions,
+  Constants,
 } from 'discord.js'
 import {
   ClusterPartial as SliceyClusterPartial,
+  SliceyOptions,
 } from 'types/slicey'
-
+import ClusterPartial from './cluster/ClusterPartial'
+import { createRangeArray } from './utils'
 class Client extends DJSClient {
   public readonly token: string
-  public readonly cluster: SliceyClusterPartial | undefined = undefined
-  public readonly options: ClientOptions // For Time Being
-  // public readonly cluster: ClientCluster | undefined = undefined
-  constructor(token: string, options?: ClientOptions) {
+  public cluster: SliceyClusterPartial | undefined = undefined
+  public sliceyOptions: SliceyOptions // For Time Being
+  constructor(token: string, options?: SliceyOptions) {
     super()
-    this.options = options
+    this.sliceyOptions = Object.assign(Constants.DefaultOptions, options)
     this.token = token
+    if (process.env.SLICEY_CLUSTER_UTIL_ENABLED) {
+      this.cluster = new ClusterPartial(this)
+      this.cluster.start()
+      this.sliceyOptions = Object.assign(this.sliceyOptions, {
+        shardCount: this.cluster.totalShards,
+        shards: createRangeArray(this.cluster.firstShardId, this.cluster.lastShardId),
+      })
+    }
   }
 
-  public async login(): Promise<string> {
-    if (this.cluster) {
-      this.cluster.start()
-    }
+  public login(): Promise<string> {
+    this.options = this.sliceyOptions
 
-    return await super.login(this.token)
+    return super.login(this.token)
   }
 }
 

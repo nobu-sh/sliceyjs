@@ -1,3 +1,6 @@
+import { Constants } from 'discord.js'
+import Axios from 'axios'
+import { DiscordBotGateway } from 'types/slicey'
 export function chunk(shards: number[], totalClusters: number): number[][] {
   if (totalClusters < 2) return [shards]
 
@@ -28,4 +31,25 @@ export function createRangeArray(start: number, end: number): number[] {
   }
 
   return range
+}
+export async function getGateway(token: string): Promise<DiscordBotGateway | undefined> {
+  const version = "v" + Constants.DefaultOptions.http.version
+  const url = Constants.DefaultOptions.http.api + "/" + version
+  const gateway = url + Constants.Endpoints.botGateway
+
+  return new Promise((res) => {
+    Axios({
+      method: 'get',
+      url: gateway,
+      headers: {
+        "Authorization": `Bot ${token}`,
+      },
+    })
+      .then(({ data }) => {
+        res(data)
+      })
+      .catch(() => {
+        res(undefined)
+      })
+  })
 }
