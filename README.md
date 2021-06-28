@@ -1,5 +1,5 @@
 <p align="center">
-  <img align="center" width="700" height="auto" src= "./docs/logo.png" alt="SliceyJS" />
+  <img align="center" width="700" height="auto" src= "./docs/public/logo.png" alt="SliceyJS" />
   <br>
   <br>
   <p align="center">
