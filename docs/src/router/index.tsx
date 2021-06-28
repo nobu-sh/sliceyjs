@@ -10,7 +10,7 @@ import Home from '../views/Home'
 import NotFound from '../views/404'
 
 export default () => (
-  <MRouter>
+  <MRouter basename={process.env.NODE_ENV === 'development' ? "/" : "/sliceyjs"}>
     <Switch>
       <Route exact path="/">
         <Home />
