@@ -19,19 +19,19 @@ const plugins = [
   })
 ]
 
-if (process.env.NODE_ENV === 'production') { 
-  plugins.push(
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      exclude: [/\.map$/, /_redirects/],
-    }),
-    // new PrerenderSPAPlugin({
-    //   staticDir: path.join(process.cwd(), 'dist'),
-    //   routes: ['/'],
-    // })
-  )
-}
+// if (process.env.NODE_ENV === 'production') { 
+//   plugins.push(
+//     // new WorkboxPlugin.GenerateSW({
+//     //   clientsClaim: true,
+//     //   skipWaiting: true,
+//     //   exclude: [/\.map$/, /_redirects/],
+//     // }),
+//     // new PrerenderSPAPlugin({
+//     //   staticDir: path.join(process.cwd(), 'dist'),
+//     //   routes: ['/'],
+//     // })
+//   )
+// }
 
 module.exports = () => ({
   plugins,

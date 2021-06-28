@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './serviceWorker'
+// import './serviceWorker'
 
 import App from './App'
 
