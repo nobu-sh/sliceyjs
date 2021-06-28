@@ -93,7 +93,8 @@ module.exports = () => ({
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(process.cwd(), 'dist')
+    path: path.resolve(process.cwd(), 'dist'),
+    publicPath: process.env.NODE_ENV === 'production' ? "/sliceyjs" : "/"
   },
   mode: process.env.NODE_ENV,
   // devtool: process.env.NODE_ENV === 'production' ? 'none' : 'source-map',
