@@ -1,6 +1,6 @@
 import {
   Client as DJSClient,
-  Constants,
+  // Constants,
 } from 'discord.js'
 import {
   ClusterPartial as SliceyClusterPartial,
@@ -13,8 +13,8 @@ class Client extends DJSClient {
   public cluster: SliceyClusterPartial | undefined = undefined
   public sliceyOptions: SliceyOptions // For Time Being
   constructor(token: string, options?: SliceyOptions) {
-    super()
-    this.sliceyOptions = Object.assign(Constants.DefaultOptions, options)
+    super(options)
+    this.sliceyOptions = this.options
     this.token = token
     if (process.env.SLICEY_CLUSTER_UTIL_ENABLED) {
       this.cluster = new ClusterPartial(this)
