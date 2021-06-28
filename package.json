@@ -1,7 +1,7 @@
 {
   "name": "sliceyjs",
   "version": "1.0.0",
-  "description": "💫 SliceyJS is a utility wrapper for DJS",
+  "description": "💫 SliceyJS is a utility module for DJS",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
@@ -36,7 +36,10 @@
     "clusters",
     "sharding",
     "shards",
-    "bot"
+    "bot",
+    "utility",
+    "slicey",
+    "addon"
   ],
   "scripts": {
     "build": "tsc",
