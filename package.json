@@ -51,12 +51,14 @@
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
     "prepack": "yarn run build && yarn run gen:esm",
-    "precommit": "echo 'pre-commit running linter...' && exit 0",
+    "precommitlint": "echo 'pre-commit running linter...' && exit 0",
+    "precommitbuild": "echo 'pre-commit building docs...' && exit 0",
     "push": "npm run deploy:docs && git push"
   },
   "pre-commit": [
-    "precommit",
+    "precommitlint",
     "lint:fix",
+    "precommitbuild",
     "build:docs"
   ],
   "devDependencies": {
