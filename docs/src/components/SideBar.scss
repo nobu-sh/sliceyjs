@@ -1,39 +1,54 @@
 @import "~mixins/breakpoints";
 
-#sidebar {
+.sidebar {
   user-select: none;
   display: flex;
   justify-content: center;
-  width: 35vw;
+  width: 15rem;
   min-height: 100%;
   background-color: rgba($color:#fff, $alpha: 0.08);
   overflow-x: hidden;
   overflow-y: scroll;
   .sidebar-items {
-    padding: 3rem;
+    // position: relative;
+    width: 100%;
+    padding: 2rem 1rem 0 1rem;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 0.8rem;
-    @include ml {
-      padding: 0rem;
-      padding-top: 3rem;
-    }
+    // @include ml {
+    //   padding: 0rem;
+    //   padding-top: 3rem;
+    // }
   }
-  @include md {
-    display: none;
+  transition: left 0.5s ease;
+  &.BORGERMODE {
+    position: absolute;
+    background-color: rgba(42, 37, 41, 1);
+    z-index: 9999;
+    width: 15rem;
+    // left: -40%;
+    height: 100%;
+    left: -15rem;
+    top: 0;
+    transition: left 0.5s ease;
+    &.active {
+      left: 0;
+    }
   }
 }
 .dropdown {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: nowrap;
   img {
     width: 30px;
     height: 30px;
   }
   .cheveron {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
     transition: transform 0.2s ease-in-out;
     &.rotate {
       transform: rotate(0deg);
@@ -44,7 +59,7 @@
 .dropdowncontent {
   display: none;
   transition: display 0.3s ease;
-  padding-left: 1rem;
+  padding-left: 0.2rem;
   &.open {
     display: flex;
     flex-direction: column;

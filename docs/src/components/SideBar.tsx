@@ -27,6 +27,9 @@ class Dropdown extends React.Component<dropdownprops, dropdownstate> {
     } else {
       this.state = { open: false }
     }
+
+    this.state = { open: true }
+
     this.reverse = this.reverse.bind(this)
   }
   reverse() {
@@ -49,8 +52,8 @@ class Dropdown extends React.Component<dropdownprops, dropdownstate> {
     return (
       <div>
         <div className="dropdown" onClick={this.reverse}>
-          <img className={`cheveron hoverCursor ${this.state.open ? "rotate": ""}`} src="icons/chevron-down.svg" />
           <h3 className="hoverCursor">{this.props.children}</h3>
+          <img className={`cheveron hoverCursor ${this.state.open ? "rotate": ""}`} src="icons/chevron-down.svg" />
         </div>
         <div className={`dropdowncontent ${this.state.open ? "open": ""}`}>
           {items}
@@ -62,9 +65,16 @@ class Dropdown extends React.Component<dropdownprops, dropdownstate> {
 
 export default function SideBar() {
   const baseUrl = process.env.NODE_ENV === 'development' ? "" : "/sliceyjs"
+  const borger = React.useState(false)
+  const currentWidth = React.useState(window.innerWidth)
+
+  window.addEventListener('resize', () => {
+    currentWidth[1](window.innerWidth)
+  })
+
 
   return (
-    <div id="sidebar">
+    <div id="i-m-da-sidebar" className={`sidebar ${currentWidth[0] < 901 ? "BORGERMODE" : ""} ${borger[0] ? "active" : ""}`}>
       <div className="sidebar-items">
         <Dropdown items={sliceyJson.general.map(i => {return { name: i.name, route: `${baseUrl}${i.route}`}})}>General</Dropdown>
         <Dropdown items={sliceyJson.examples.map(i => {return { name: i.name, route: `${baseUrl}${i.route}`}})}>Examples</Dropdown>

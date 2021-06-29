@@ -13,6 +13,10 @@
     {
       "route": "/examples/multithreading",
       "name": "Multithreading"
+    },
+    {
+      "route": "/examples/typedefs",
+      "name": "Getting Typedefs"
     }
   ],
   "classes": [

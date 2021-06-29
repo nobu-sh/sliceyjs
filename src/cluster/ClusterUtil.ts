@@ -20,6 +20,7 @@ class ClusterUtil extends EventEmitter {
   private _totalClusters: number = numCPUs
   private _firstShardId = 0
   private _lastShardId = 0
+  private _ignoreClusterError: boolean
   private _clusters = new Map<number, {
     workerId: number
     lastShardId: number
@@ -36,6 +37,7 @@ class ClusterUtil extends EventEmitter {
       this._totalClusters = options.clusters || numCPUs
       this._firstShardId = options.firstShardId || 0
       this._lastShardId = options.lastShardId || 0
+      this._ignoreClusterError = options.ignoreClusterError || false
     }
 
     // Alot of stuff based off of listening for responses
@@ -53,7 +55,9 @@ class ClusterUtil extends EventEmitter {
         this._totalShards = gateway.shards
       }
       if (this._totalClusters > this._totalShards) {
-        console.error(new Error("More clusters open than shards, reducing cluster amount to shard amount"))
+        if (!this._ignoreClusterError) {
+          console.error(new Error("More clusters open than shards, reducing cluster amount to shard amount"))
+        }
         this._totalClusters = this._totalShards
       }
 

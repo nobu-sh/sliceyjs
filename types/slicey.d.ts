@@ -90,6 +90,7 @@ export interface ClusterUtilOptions {
   shards?: number
   firstShardId?: number
   lastShardId?: number
+  ignoreClusterError?: boolean
 }
 export interface ClusterUtilIPC {
   /**

@@ -9,12 +9,35 @@
   max-height: 100vh;
   max-width: 100%;
   #content {
-    padding: 4rem;
+    position: relative;
+    z-index: 1;
+    padding: 4rem 4rem 8rem 4rem;
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     @include sm {
-      padding: 1rem;
+      padding: 4rem 1rem 8rem 1rem;
+    }
+  }
+  .openMenu {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    display: none;
+    transform: rotate(-90deg);
+    margin: 10px;
+    background-color: rgba(42, 37, 41, 1);
+    border-radius: 50%;
+    &.on {
+      display: block;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: rotate(-90deg) scale(1.1);
+        transition: transform 0.3s ease;
+      }
     }
   }
 }
