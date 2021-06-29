@@ -1,6 +1,7 @@
 .codeblock {
   position: relative;
   .copyCode {
+    user-select: none;
     position: absolute;
     width: 35px;
     height: 35px;
@@ -14,6 +15,7 @@
       border: rgba($color: #69ff6e, $alpha: 0.3) 1px solid;
     }
     img {
+      user-select: none;
       opacity: 70%;
       height: 100%;
       width: 100%;

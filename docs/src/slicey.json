@@ -1,0 +1,68 @@
+{
+  "general": [
+    {
+      "route": "/",
+      "name": "Welcome"
+    }
+  ],
+  "examples": [
+    {
+      "route": "/examples/basic-usage",
+      "name": "Basic Usage"
+    },
+    {
+      "route": "/examples/multithreading",
+      "name": "Multithreading"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Client",
+      "route": "/classes/client",
+      "description": "The main asset for interacting with discord.js and Discord API.",
+      "extends": {
+        "class": "Client",
+        "link": "https://discord.js.org/#/docs/main/stable/class/Client"
+      },
+      "parameters": [],
+      "properties": [],
+      "methods": [],
+      "events": []
+    },
+    {
+      "name": "ClusterUtil",
+      "route": "/classes/clusterutil",
+      "description": "The main asset for multithreading your shards.",
+      "extends": {
+        "class": "EventEmitter",
+        "link": "https://nodejs.org/api/events.html#events_class_eventemitter"
+      },
+      "parameters": [],
+      "properties": [],
+      "methods": [],
+      "events": []
+    },
+    {
+      "name": "ClusterPartial",
+      "route": "/classes/clusterpartial",
+      "description": "Partial assigned to the Client that enables interaction with ClusterUtil inside a thread.",
+      "parameters": [],
+      "properties": [],
+      "methods": [],
+      "events": []
+    },
+    {
+      "name": "IPC",
+      "route": "/classes/ipc",
+      "description": "The main asset to communicate to other threads/clusters",
+      "extends": {
+        "class": "EventEmitter",
+        "link": "https://nodejs.org/api/events.html#events_class_eventemitter"
+      },
+      "parameters": [],
+      "properties": [],
+      "methods": [],
+      "events": []
+    }
+  ]
+}

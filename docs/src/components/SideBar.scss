@@ -1,0 +1,88 @@
+@import "~mixins/breakpoints";
+
+#sidebar {
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  width: 35vw;
+  min-height: 100%;
+  background-color: rgba($color:#fff, $alpha: 0.08);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  .sidebar-items {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.8rem;
+    @include ml {
+      padding: 0rem;
+      padding-top: 3rem;
+    }
+  }
+  @include md {
+    display: none;
+  }
+}
+.dropdown {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  .cheveron {
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease-in-out;
+    &.rotate {
+      transform: rotate(0deg);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+.dropdowncontent {
+  display: none;
+  transition: display 0.3s ease;
+  padding-left: 1rem;
+  &.open {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    transition: display 0.3s ease;
+  }
+}
+.hoverCursor:hover {
+  cursor: pointer;
+}
+.scoped-a:link {
+  margin-top: 0.5rem;
+  font-size: 95%;
+  font-weight: 400;
+  color: rgba($color: #fff, $alpha: 0.7);
+  transition: color 0.3s ease;
+  &:hover {
+    transition: color 0.3s ease;
+    color: #ff69b4;
+  }
+  &.current {
+    color: #ff69b4;
+  }
+}
+.scoped-a:visited {
+  margin-top: 0.5rem;
+  font-size: 95%;
+  font-weight: 400;
+  color: rgba($color: #fff, $alpha: 0.7);
+  transition: color 0.3s ease;
+  &:hover {
+    transition: color 0.3s ease;
+    color: #ff69b4;
+  }
+  &.current {
+    color: #ff69b4;
+  }
+}
+// .scoped-a:link:hover {
+//   color: #ff69b4;
+// }

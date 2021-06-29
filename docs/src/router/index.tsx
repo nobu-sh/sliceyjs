@@ -1,4 +1,5 @@
 import * as React from "react"
+import { v4 as uuid } from 'uuid'
 
 import {
   BrowserRouter as MRouter,
@@ -8,14 +9,36 @@ import {
 
 import Welcome from '../views/Welcome'
 import NotFound from '../views/404'
+import ClassTemplate from '../views/Class'
+import Basic from '../views/examples/BasicUsage'
+import Multi from '../views/examples/Multithreading'
 
-export default () => (
-  <MRouter basename={process.env.NODE_ENV === 'development' ? "/" : "/sliceyjs"}>
-    <Switch>
-      <Route exact path="/">
-        <Welcome />
+
+import slicey from '../slicey.json'
+import { SliceyJson } from "src/interfaces"
+const sliceyJson: SliceyJson = slicey
+
+export default function Router() {
+  const classRoutes = []
+  for (const sclass of sliceyJson.classes) {
+    classRoutes.push(
+      <Route exact path={`${sclass.route}`} key={uuid()}>
+        <ClassTemplate sliceyClass={sclass}></ClassTemplate>
       </Route>
-      <Route path="*" component={NotFound} />
-    </Switch>
-  </MRouter>
-)
+    )
+  }
+
+  return (
+    <MRouter basename={process.env.NODE_ENV === 'development' ? "/" : "/sliceyjs"}>
+      <Switch>
+        <Route exact path="/">
+          <Welcome />
+        </Route>
+        <Route exact path="/examples/basic-usage" component={Basic} />
+        <Route exact path="/examples/multithreading" component={Multi} />
+        {classRoutes}
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </MRouter>
+  )
+}

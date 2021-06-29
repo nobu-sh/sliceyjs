@@ -83,20 +83,16 @@ a:link {
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
-  &:hover {
-    color: #69a5ff;
-    transition: color 0.2s ease;
-  }
 }
 a:visited {
   color: #698fff;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
-  &:hover {
-    color: #69a5ff;
-    transition: color 0.2s ease;
-  }
+}
+a:hover {
+  color: #69a5ff;
+  transition: color 0.2s ease;
 }
 
 ul {

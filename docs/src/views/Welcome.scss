@@ -27,6 +27,9 @@
     img {
       height: 1.7vw;
       width: auto;
+      @include lg {
+        height: 2vw;
+      }
       @include md {
         height: 3vw;
       }
