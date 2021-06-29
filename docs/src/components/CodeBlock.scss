@@ -1,0 +1,35 @@
+.codeblock {
+  position: relative;
+  .copyCode {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    top: 8px;
+    right: 8px;
+    background-color: rgba($color:#fff, $alpha: 0.1);
+    border: rgba($color: #fff, $alpha: 0.2) 1px solid;
+    border-radius: 5px;
+    &.copyClicked {
+      border: rgba($color: #69ff6e, $alpha: 0.3) 1px solid;
+    }
+    img {
+      opacity: 70%;
+      height: 100%;
+      width: 100%;
+    }
+    transition: background-color 0.2s ease, border 0.2s ease, transform 0.2s ease;
+    &:hover {
+      img {
+        opacity: 90%;
+      }
+      background-color: rgba($color:#fff, $alpha: 0.2);
+      border: rgba($color: #fff, $alpha: 0.3) 1px solid;
+      transform: scale(1.05);
+      transition: background-color 0.2s ease, border 0.2s ease, transform 0.2s ease;
+      &.copyClicked {
+        border: rgba($color: #69ff6e, $alpha: 0.3) 1px solid;
+      }
+    }
+  }
+}

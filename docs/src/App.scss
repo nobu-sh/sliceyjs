@@ -1,0 +1,30 @@
+@import "~mixins/breakpoints";
+
+#main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  min-width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  max-width: 100%;
+  #sidebar {
+    width: 35vw;
+    min-height: 100%;
+    background-color: rgba($color:#fff, $alpha: 0.08);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    @include md {
+      display: none;
+    }
+  }
+  #content {
+    padding: 4rem;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    @include sm {
+      padding: 1rem;
+    }
+  }
+}

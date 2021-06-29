@@ -1,5 +1,6 @@
 @import './theme.scss';
 @import './fonts.scss';
+@import '~mixins/breakpoints';
 
 *, *::before, *::after {
   margin: 0;
@@ -28,4 +29,52 @@ body {
   background-color: var(--background);
   color: var(--text);
   height: 100%;
+  letter-spacing: 1px;
 }
+
+div.align-center {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.inline {
+  padding: 5px;
+  background-color: rgba($color: #fff, $alpha: 0.10);
+  // font-weight: 600;
+  border-radius: 5px;
+  font-family: 'Manrope';
+  font-size: 100%;
+}
+.block {
+  padding: 1rem;
+  background-color: rgba($color: #fff, $alpha: 0.08);
+  width: 100%;
+  border-radius: 5px;
+  // font-weight: 600;
+  code {
+    font-family: 'Inconsolata';
+    font-size: 85%;
+    line-height: 1.4rem;
+  }
+}
+
+div.spacer {
+  width: 100%;
+  height: 2px;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: rgba($color: #fff, $alpha: 0.15);
+}
+
+// h1 {
+//   font-size: 1.7vw;
+//   @include lg {
+
+//   }
+//   @include ml {
+
+//   }
+//   @include sm
+// }

@@ -84,7 +84,8 @@ module.exports = () => ({
       'scss': path.join(__dirname, 'src/scss'),
       'views': path.join(__dirname, 'src/views'),
       'assets': path.join(__dirname, 'src/assets'),
-      '~mixins': path.join(__dirname, 'src', 'scss', 'mixins')
+      '~mixins': path.join(__dirname, 'src', 'scss', 'mixins'),
+      'components': path.join(__dirname, 'src', 'components'),
     },
     extensions: ['*', '.js', '.jsx', '.tsx', '.ts']
   },

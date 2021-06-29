@@ -1,0 +1,48 @@
+@import "~mixins/breakpoints";
+
+#welcome-logo {
+  user-select: none;
+  height: auto;
+  width: 30vw;
+  // margin-top: 1vw;
+  margin-bottom: 3vw;
+  @include md {
+    width: 100%;
+  }
+  @include xs {
+    width: 100%;
+    margin-bottom: 5vw;
+  }
+}
+#welcome-tags {
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  a {
+    border: none;
+    outline: none;
+    img {
+      height: 1.7vw;
+      width: auto;
+      @include md {
+        height: 3vw;
+      }
+      @include xs {
+        height: 5vw;
+        gap: 2px;
+      }
+    }
+  }
+}
+#welcome-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 2px;
+  margin-top: 5rem;
+  width: 100%;
+  // height: 100%;
+}

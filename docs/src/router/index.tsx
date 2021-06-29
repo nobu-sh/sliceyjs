@@ -6,14 +6,14 @@ import {
   Switch,
 } from "react-router-dom"
 
-import Home from '../views/Home'
+import Welcome from '../views/Welcome'
 import NotFound from '../views/404'
 
 export default () => (
   <MRouter basename={process.env.NODE_ENV === 'development' ? "/" : "/sliceyjs"}>
     <Switch>
       <Route exact path="/">
-        <Home />
+        <Welcome />
       </Route>
       <Route path="*" component={NotFound} />
     </Switch>
