@@ -1,6 +1,11 @@
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript'
+import ts from 'react-syntax-highlighter/dist/esm/languages/hljs/typescript'
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+
+SyntaxHighlighter.registerLanguage('javascript', js)
+SyntaxHighlighter.registerLanguage('typescript', ts)
 
 import './CodeBlock.scss'
 
