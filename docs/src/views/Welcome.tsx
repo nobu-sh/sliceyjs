@@ -5,11 +5,23 @@ import CodeBlock from '../components/CodeBlock'
 
 import './Welcome.scss'
 
-const exampleJS = 
-`const test = "123"
-if (test.startsWith("1")) {
-    console.log("WOW I NEVER EXPECTED THIS")
-}`
+const basicUsage =
+`const { Intents } = require('discord.js');
+const { Client } = require('sliceyjs');
+
+const bot = new Client('token', { intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
+bot.on('ready', () => {
+  console.log(\`Logged in as \${bot.user.tag}!\`);
+});
+
+bot.on('message', message => {
+  if (message.content === 'ping') {
+    message.channel.send('pong');
+  }
+});
+
+bot.login()`
 
 export default function App() {
     return (
@@ -19,16 +31,40 @@ export default function App() {
                 <a href="/"><img src="https://img.shields.io/github/package-json/v/NobUwU/sliceyjs?style=for-the-badge" alt="Version"/></a>
                 <a href="/"><img src="https://img.shields.io/github/license/NobUwU/sliceyjs?style=for-the-badge" alt="License"/></a>
                 <a href="/"><img src="https://img.shields.io/github/languages/top/NobUwU/sliceyjs?style=for-the-badge" alt="Written In Typescript"/></a>
-                <a href="https://www.npmjs.com/package/sliceyjs"><img src="https://img.shields.io/npm/dt/sliceyjs?style=for-the-badge" alt="Downloads"/></a>
+                <a href="https://www.npmjs.com/package/sliceyjs" target="_blank"><img src="https://img.shields.io/npm/dt/sliceyjs?style=for-the-badge" alt="Downloads"/></a>
                 <a href="/"><img src="https://img.shields.io/github/repo-size/NobUwU/sliceyjs?label=Size&style=for-the-badge" alt="Size"/></a>
             </div>
             <div id="welcome-content">
-                <h2>About</h2>
+                <h2 id="welcome-about">About</h2>
                 <div className="spacer" />
-                <p>Example Of <code className="inline">Inline Text</code> Not too Shabby</p>
-                <br/>
-                <p>Example Of</p>
-                <CodeBlock language="javascript">{exampleJS}</CodeBlock>
+                <p id="welcome-about-des">SliceyJS is a utility addon for the widely used <a target="_blank" href="https://discord.com/developers/docs/intro">Discord API</a> module, <a target="_blank" href="https://discord.js.org/#/">discord.js</a>. SliceyJS adds a handful of features the average bot developer might find useful or helpful when attempting to scale their bot to production!</p>
+                <ul id="welcome-about-list">
+                    <li>Up-to-date</li>
+                    <li>Lightweight</li>
+                    <li>Consistent</li>
+                    <li>Simple</li>
+                    <li>TS & JS support</li>
+                </ul>
+                <p id="welcome-about-notice"><span className="inline">NOTICE</span>: SliceyJS is still a WIP. It only offers clustering and sharding at the moment!</p>
+                <br />
+                <h2 id="welcome-installation">Installation</h2>
+                <div className="spacer" />
+                <p id="welcome-installation-node-version"><b>Node.js 14.0.0+ is required.</b></p>
+                <CodeBlock className="npm-install" language="powershell">npm install sliceyjs</CodeBlock>
+                <CodeBlock language="powershell">npm install discord.js</CodeBlock>
+                <br />
+                <h2 id="welcome-basic-usage">Basic Usage</h2>
+                <div className="spacer" />
+                <CodeBlock language="javascript">{basicUsage}</CodeBlock>
+                <br />
+                <h2 id="welcome-links">Links</h2>
+                <div className="spacer" />
+                <ul id="welcome-links-list">
+                    <li><a href="https://discord.com/developers/docs/intro" target="_blank">Discord Dev Portal</a></li>
+                    <li><a href="https://discord.js.org/#/" target="_blank">Discord.js</a></li>
+                    <li><a href="https://github.com/nobuwu/sliceyjs" target="_blank">Github</a></li>
+                    <li><a href="https://www.npmjs.com/package/sliceyjs" target="_blank">NPM</a></li>
+                </ul>
             </div>
         </div>
     )

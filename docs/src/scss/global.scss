@@ -78,3 +78,30 @@ div.spacer {
 //   }
 //   @include sm
 // }
+a:link {
+  color: #698fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #69a5ff;
+    transition: color 0.2s ease;
+  }
+}
+a:visited {
+  color: #698fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #69a5ff;
+    transition: color 0.2s ease;
+  }
+}
+
+ul {
+  margin-left: 30px;
+  li {
+    margin-bottom: 5px;
+  }
+}
