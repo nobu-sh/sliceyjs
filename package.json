@@ -1,6 +1,6 @@
 {
   "name": "sliceyjs",
-  "version": "1.0.2",
+  "version": "1.1.0-beta",
   "description": "💫 SliceyJS is a utility module for DJS",
   "license": "MIT",
   "main": "lib/index.js",
