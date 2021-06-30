@@ -19,7 +19,7 @@ export interface ClusterErrorEvent {
   clusterShards: [number, number]
   clusterId: number
   message: string
-  error: unknown
+  error: Error
 }
 export interface ClusterWarnEvent {
   clusterShards: [number, number]
