@@ -171,7 +171,6 @@ export interface ClusterStats {
   ram?: number
   shards?: ShardStats[]
   largeGuilds?: number
-  voiceConnections?: number
   exclusiveGuilds?: number
 }
 
