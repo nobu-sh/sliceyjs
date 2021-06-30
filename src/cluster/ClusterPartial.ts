@@ -29,17 +29,27 @@ class ClusterPartial implements SliceyClusterPartial {
   }
   private errorHandle(): void {
     process.on('uncaughtException', (err) => {
+      const name = new String(err.name)
+      const msg = new String(err.message)
+      const stack = new String(err.stack)
       process.send({
         payload: 'clusterError',
         data: {
           clusterShards: [this.firstShardId, this.lastShardId],
           clusterId: this.id,
           message: "Uncaught Exception",
-          error: err,
+          error: {
+            name,
+            message: msg,
+            stack,
+          },
         },
       })
     })
     process.on('unhandledRejection', (err: Error) => {
+      const name = new String(err.name)
+      const msg = new String(err.message)
+      const stack = new String(err.stack)
       process.send({
         payload: "clusterError",
         data: {
@@ -47,9 +57,9 @@ class ClusterPartial implements SliceyClusterPartial {
           clusterId: this.id,
           message: "Unhandled Rejection",
           error: {
-            name: err.name,
-            message: err.message,
-            stack: err.stack,
+            name,
+            message: msg,
+            stack,
           },
         },
       })
@@ -121,11 +131,18 @@ class ClusterPartial implements SliceyClusterPartial {
         })
       })
       .on('shardError', (err, id) => {
+        const name = new String(err.name)
+        const msg = new String(err.message)
+        const stack = new String(err.stack)
         process.send({
           payload: "shardError",
           data: {
             clusterId: this.id,
-            error: err,
+            error: {
+              name,
+              message: msg,
+              stack,
+            },
             shardId: id,
             clusterShards: [this.firstShardId, this.lastShardId],
           },
@@ -142,12 +159,19 @@ class ClusterPartial implements SliceyClusterPartial {
         })
       })
       .on('error', (err) => {
+        const name = new String(err.name)
+        const msg = new String(err.message)
+        const stack = new String(err.stack)
         process.send({
           payload: "clusterError",
           data: {
             clusterId: this.id,
             message: "Client Error Occured",
-            error: err,
+            error: {
+              name,
+              message: msg,
+              stack,
+            },
             clusterShards: [this.firstShardId, this.lastShardId],
           },
         })
