@@ -48,7 +48,7 @@ export default function App() {
     <div>
       <h1 id="mtitle">Multithreading</h1>
       <br />
-      <p id="mdes">By default nodejs runs on only one thread. When attempting to handle multiple websocket connections this could become and issue as that single thread will begin to become stressed with all the incoming payloads from the websocket connections. Thus Slicey has multithreading which uses nodes <a href="https://nodejs.org/api/cluster.html#cluster_cluster">Cluster</a> module to spread your shards across multiple threads.</p>
+      <p id="mdes">By default nodejs runs on only one thread. When attempting to handle multiple websocket connections this could become an issue as that single thread will begin to become stressed with all the incoming payloads from the websocket connections. Thus Slicey has multithreading which uses nodes <a href="https://nodejs.org/api/cluster.html#cluster_cluster">Cluster</a> module to spread your shards across multiple threads.</p>
       <br />
       <h2>Example</h2>
       <div className="spacer"></div>
@@ -65,7 +65,7 @@ export default function App() {
       <br />
       <h2>Woah, Slow Down....</h2>
       <div className="spacer"></div>
-      <p>So whats happening? Well you created a new cluster manager using <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a>. ClusterUtil then does all the needed calculations on how many shards to open for your bot and how many clusters are needed. Once that is done Slicey begins to create copies of the master process and passes the required info needed to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a> in each process. Then once the bot is ready it sends "Logged in as USERNAME". You will also notice another thing under that, that says "Cluster ID? : ". This is because when <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a> passes the needed info to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a> is also passes another object <a href="https://nobuwu.github.io/sliceyjs/classes/clusterpartial">ClusterPartial</a> which gives you access to the current process copy's info and <a href="https://nobuwu.github.io/sliceyjs/classes/ipc">IPC</a> which allows the current process copy to communicate with other process copies or rather "clusters".</p>
+      <p>So whats happening? Well you created a new cluster manager using <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a>. ClusterUtil then does all the needed calculations on how many shards to open for your bot and how many clusters are needed. Once that is done Slicey begins to create copies of the master process and passes the required info needed to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a> in each process. Then once the bot is ready it sends "Logged in as USERNAME". You will also notice another thing under that, that says "Cluster ID? : ". This is because when <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a> passes the needed info to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a>, it is also passes another object <a href="https://nobuwu.github.io/sliceyjs/classes/clusterpartial">ClusterPartial</a> which gives you access to the current process copy's info and <a href="https://nobuwu.github.io/sliceyjs/classes/ipc">IPC</a> which allows the current process copy to communicate with other process copies or rather "clusters".</p>
     </div>
   )
 }
