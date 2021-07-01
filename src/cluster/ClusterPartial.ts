@@ -1,10 +1,12 @@
 import {
+  BroadcastEvalPayloadPartial,
   ClusterPartial as SliceyClusterPartial,
   ClusterUtilIPC,
   ProcessEventPartials,
-} from 'types/slicey'
+} from 'types'
 import IPC from './IPC'
 import Client from 'Client'
+import { ValidClusterPartialPayloads } from '../Constants'
 class ClusterPartial implements SliceyClusterPartial {
   private _client: Client
   // public readonly shards: number
@@ -13,7 +15,7 @@ class ClusterPartial implements SliceyClusterPartial {
   public readonly lastShardId: number = undefined
   public readonly id: number = undefined
   public readonly totalClusters: number = undefined
-  public readonly ipc: ClusterUtilIPC = new IPC()
+  public readonly ipc: ClusterUtilIPC = undefined
   private started = false
   constructor(client: Client) {
     this._client = client
@@ -23,7 +25,7 @@ class ClusterPartial implements SliceyClusterPartial {
     this.lastShardId = parseInt(process.env.SLICEY_LAST_SHARD_ID)
     this.id = parseInt(process.env.SLICEY_CLUSTER_ID)
     this.totalClusters = parseInt(process.env.SLICEY_TOTAL_CLUSTER)
-
+    this.ipc = new IPC(this.id)
     // Alot of stuff based off of listening for responses
     process.setMaxListeners(Infinity)
   }
@@ -68,6 +70,7 @@ class ClusterPartial implements SliceyClusterPartial {
   private registerPayloads(): void {
     process.on('message', (msg: ProcessEventPartials) => {
       if (msg.payload) {
+        if (!ValidClusterPartialPayloads.includes(msg.payload)) return
         try {
           this.payloads[msg.payload](msg)
         } catch (err) {
@@ -198,7 +201,7 @@ class ClusterPartial implements SliceyClusterPartial {
     }
   }
 
-  private payloads = {
+  private payloads: { [key: string]: (msg: ProcessEventPartials) => void } = {
     stats: (): void => {
       const shards = []
       for (const shard of this._client.ws.shards.values()) {
@@ -221,6 +224,45 @@ class ClusterPartial implements SliceyClusterPartial {
           exclusiveGuilds: this._client.guilds.cache.filter(g => g.members.cache.filter(m => m.user.bot).size === 1).size,
         },
       })
+    },
+    broadcastEval: async (msg: BroadcastEvalPayloadPartial): Promise<void> => {
+      try {
+        const callback = eval(msg.data.callback)
+        const result = await callback(this._client)
+        // const result = await msg.data.callback(this._client)
+        process.send({
+          payload: "broadcastEvalReturn",
+          data: {
+            cluster: this.id,
+            totalShards: this.totalClusters,
+            shards: [this.firstShardId, this.lastShardId],
+            totalClusters: this.totalClusters,
+            failed: false,
+            result,
+            error: null,
+          },
+        })
+      } catch (error) {
+        const name = new String(error.name)
+        const msg = new String(error.message)
+        const stack = new String(error.stack)
+        process.send({
+          payload: "broadcastEvalReturn",
+          data: {
+            cluster: this.id,
+            totalShards: this.totalClusters,
+            shards: [this.firstShardId, this.lastShardId],
+            totalClusters: this.totalClusters,
+            failed: true,
+            result: null,
+            error: {
+              name,
+              message: msg,
+              stack,
+            },
+          },
+        })
+      }
     },
   }
 }

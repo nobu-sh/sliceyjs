@@ -3,16 +3,18 @@ import nodeCluster from 'cluster'
 import os from 'os'
 const numCPUs = os.cpus().length
 import {
+  BroadcastEvalCallback,
+  BroadcastEvalClusterReturn,
   ClusterStats,
   ClusterUtilOptions, IPCEvent, ProcessEventPartials,
-} from 'types/slicey'
+} from 'types'
 import {
   getGateway,
   createRangeArray,
   chunk,
 } from '../utils'
 import path from 'path'
-import { ClusterUtilPayloadIgnoreList } from '../Constants'
+import { ValidClusterUtilPayloads } from '../Constants'
 class ClusterUtil extends EventEmitter {
   private _token: string
   private _file: string
@@ -119,7 +121,7 @@ class ClusterUtil extends EventEmitter {
   private registerPayloads(): void {
     nodeCluster.on('message', async(worker, message: ProcessEventPartials) => {
       if (message.payload) {
-        if (ClusterUtilPayloadIgnoreList.includes(message.payload)) return
+        if (!ValidClusterUtilPayloads.includes(message.payload)) return
         const clusterId = this._workers.get(worker.id)
         try {
           this.payloads[message.payload](message, clusterId)
@@ -243,7 +245,13 @@ class ClusterUtil extends EventEmitter {
     ipcStatsRequest: async (message: ProcessEventPartials): Promise<void> => {
       this.sendTo(message.cluster, {
         event: "IPCClusterUtilStatsRequest--default",
-        msg: await this.getAllStats(),
+        content: await this.getAllStats(),
+      })
+    },
+    broadcastEvalRequest: async (message: ProcessEventPartials): Promise<void> => {
+      this.sendTo(message.cluster, {
+        event: "IPCClusterUtilbroadcastEvalRequest--default",
+        content: await this.broadcastEval(message.data.callback),
       })
     },
   }
@@ -265,6 +273,30 @@ class ClusterUtil extends EventEmitter {
         worker.send(message)
       }
     }
+  }
+  public async broadcastEval(callback: BroadcastEvalCallback): Promise<BroadcastEvalClusterReturn[]> {
+    const responses = []
+    for (const cluster of this._clusters.values()) {
+      function getEval() {
+        return new Promise((res) => {
+          const cb = (w, m) => {
+            if (m.payload === "broadcastEvalReturn") {
+              res(m.data)
+              nodeCluster.removeListener('message', cb)
+            }
+          }
+          nodeCluster.on('message', cb)
+          nodeCluster.workers[cluster.workerId].send({
+            payload: "broadcastEval",
+            data: { callback }, 
+          })
+        })
+      }
+
+      responses.push(await getEval())
+    }
+
+    return Promise.all(responses)
   }
   public async getAllStats(): Promise<ClusterStats[]> {
     // const currentClusters = new Number(this._clusters.size)
