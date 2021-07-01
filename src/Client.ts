@@ -5,7 +5,7 @@ import {
 import {
   ClusterPartial as SliceyClusterPartial,
   SliceyOptions,
-} from 'types/slicey'
+} from 'types'
 import ClusterPartial from './cluster/ClusterPartial'
 import { createRangeArray } from './utils'
 class Client extends DJSClient {

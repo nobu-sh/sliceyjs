@@ -1,6 +1,6 @@
 import { Constants } from 'discord.js'
 import Axios from 'axios'
-import { DiscordBotGateway } from 'types/slicey'
+import { DiscordBotGateway } from 'types'
 export function chunk(shards: number[], totalClusters: number): number[][] {
   if (totalClusters < 2) return [shards]
 

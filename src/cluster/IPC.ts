@@ -1,14 +1,16 @@
-import { EventEmitter } from "events"
 import {
+  BroadcastEvalCallback,
+  BroadcastEvalClusterReturn,
   ClusterStats,
   IPCEvent,
   IPCEventListener,
-} from 'types/slicey'
+} from 'types'
 
-class IPC extends EventEmitter {
-  private _events = new Map<string,((msg: IPCEvent) => void)[]>()
-  constructor() {
-    super()
+class IPC {
+  private _events = new Map<string,((...content: unknown[]) => void)[]>()
+  private clusterId: number
+  constructor(clusterId: number) {
+    this.clusterId = clusterId
     this._listener()
   }
   private _listener(): void {
@@ -16,12 +18,12 @@ class IPC extends EventEmitter {
       const event = this._events.get(msg.event)
       if (event) {
         event.forEach((cb) => {
-          cb(msg)
+          cb(...msg.content)
         })
       }
     })
   }
-  public register(event: string, cb: (msg: IPCEvent) => void): IPCEventListener {
+  public on(event: string, cb: (...content: unknown[]) => void): IPCEventListener {
     if (!this._events.get(event)) this._events.set(event, [])
     this._events.get(event).push(cb)
     const index = this._events.get(event).indexOf(cb)
@@ -36,9 +38,9 @@ class IPC extends EventEmitter {
       event,
     }
   }
-  public unregister(event: IPCEventListener): void
-  public unregister(event: string, cb: ((msg: IPCEvent) => void)): void
-  public unregister(event: IPCEventListener | string, cb?: ((msg: IPCEvent) => void)): void {
+  public removeListener(event: IPCEventListener): void
+  public removeListener(event: string, cb: ((...content: unknown[]) => void)): void
+  public removeListener(event: IPCEventListener | string, cb?: ((...content: unknown[]) => void)): void {
     if (typeof event === 'string') {
       if (cb) {
         if (this._events.get(event)) {
@@ -55,43 +57,59 @@ class IPC extends EventEmitter {
       }
     }
   }
-  public unregisterEvent(event: string): void {
+  public removeEventListeners(event: string): void {
     this._events.delete(event)
   }
-  public unregisterAll(): void {
+  public removeAllListeners(): void {
     this._events = new Map()
   }
-  public broadcast(event: string, msg?: unknown): void {
+  public send(event: string, ...content: unknown[]): void {
     process.send({
       payload: "broadcast",
       data: {
         event,
-        msg: msg || {},
+        content: content || [],
       },
     })
   }
-  public sendTo(cluster: number, event: string, msg?: unknown): void {
+  public sendTo(cluster: number, event: string, ...content: unknown[]): void {
     process.send({
       payload: "sendTo",
       cluster,
       data: {
         event,
-        msg: msg || {},
+        content: content || [],
       },
     })
   }
-  public async getAllStats(clusterId: number): Promise<ClusterStats[]> {
+  public async getAllStats(): Promise<ClusterStats[]> {
     return new Promise((res) => {
       const cb = (msg: IPCEvent) => {
         if (msg.event === "IPCClusterUtilStatsRequest--default") {
-          res(msg.msg)
+          res(msg.content as ClusterStats[])
           process.removeListener('message', cb)
         }
       }
       process.on('message', cb)
       process.send({
         payload: "ipcStatsRequest",
-        cluster: clusterId,
+        cluster: this.clusterId,
+      })
+    })
+  }
+  public async broadcastEval(callback: BroadcastEvalCallback): Promise<BroadcastEvalClusterReturn[]> {
+    return new Promise((res) => {
+      const cb = (msg: IPCEvent) => {
+        if (msg.event === "IPCClusterUtilbroadcastEvalRequest--default") {
+          res(msg.content as BroadcastEvalClusterReturn[])
+          process.removeListener('message', cb)
+        }
+      }
+      process.on('message', cb)
+      process.send({
+        payload: "broadcastEvalRequest",
+        cluster: this.clusterId,
+        data: { callback: callback.toString() },
       })
     })
   }
