@@ -79,6 +79,7 @@ export default function SideBar() {
         <Dropdown items={sliceyJson.general.map(i => {return { name: i.name, route: `${baseUrl}${i.route}`}})}>General</Dropdown>
         <Dropdown items={sliceyJson.examples.map(i => {return { name: i.name, route: `${baseUrl}${i.route}`}})}>Examples</Dropdown>
         <Dropdown items={sliceyJson.classes.map(i => {return { name: i.name, route: `${baseUrl}${i.route}`}})}>Classes</Dropdown>
+        <Dropdown items={[]}>Typedefs</Dropdown>
       </div>
     </div>
   )

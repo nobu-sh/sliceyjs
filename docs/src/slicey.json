@@ -15,6 +15,10 @@
       "name": "Multithreading"
     },
     {
+      "route": "/examples/ipc",
+      "name": "Utilizing IPC"
+    },
+    {
       "route": "/examples/typedefs",
       "name": "Getting Typedefs"
     }

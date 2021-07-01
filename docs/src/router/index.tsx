@@ -13,6 +13,7 @@ import ClassTemplate from '../views/Class'
 import Basic from '../views/examples/BasicUsage'
 import Multi from '../views/examples/Multithreading'
 import TypeDef from '../views/examples/Typedefs'
+import IPC from '../views/examples/IPC'
 
 import slicey from '../slicey.json'
 import { SliceyJson } from "src/interfaces"
@@ -36,6 +37,7 @@ export default function Router() {
         </Route>
         <Route exact path="/examples/basic-usage" component={Basic} />
         <Route exact path="/examples/multithreading" component={Multi} />
+        <Route exact path="/examples/ipc" component={IPC} />
         <Route exact path="/examples/typedefs" component={TypeDef} />
         {classRoutes}
         <Route path="*" component={NotFound} />

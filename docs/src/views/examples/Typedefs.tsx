@@ -3,7 +3,7 @@ import CodeBlock from '../../components/CodeBlock'
 
 const tsInd =
 `import { Client } from 'sliceyjs'
-import { SliceyOptions } from 'sliceyjs/types/slicey'
+import { SliceyOptions } from 'sliceyjs'
 
 const clientOptions: SliceyOptions = {
   restSweepInterval: 3000

@@ -50,7 +50,7 @@ export default function App() {
       <br />
       <p id="mdes">By default nodejs runs on only one thread. When attempting to handle multiple websocket connections this could become an issue as that single thread will begin to become stressed with all the incoming payloads from the websocket connections. Thus Slicey has multithreading which uses nodes <a href="https://nodejs.org/api/cluster.html#cluster_cluster">Cluster</a> module to spread your shards across multiple threads.</p>
       <br />
-      <h2>Example</h2>
+      <h2>ClusterUtil</h2>
       <div className="spacer"></div>
       <p>Examples in javascipt, typescript is same concept just replace requires with imports.</p>
       <br />
