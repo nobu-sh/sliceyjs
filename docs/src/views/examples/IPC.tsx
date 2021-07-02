@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeBlock from '../../components/CodeBlock'
+import ScrollToLink from '../../components/ScrollToLink'
 
 const pingPongExample =
 `const { Client } = require('sliceyjs')
@@ -115,37 +116,37 @@ broadcastEval((client) => {
 export default function App() {
   return (
     <div>
-      <h1>Utilizing IPC</h1>
+      <h1 className="bold">Utilizing IPC</h1>
       <br />
-      <p>IPC is the key feature for comminucating from one process to another. To put it into visual, when you have your bot multithreaded this means there are multiple processes of your bot... This also means that data that you need on one process may actually be on another process. IPC allows communication via events between all processes to resolve this issue.</p>
+      <p className="colorOffset light">IPC is the key feature for comminucating from one process to another. To put it into visual, when you have your bot multithreaded this means there are multiple processes of your bot... This also means that data that you need on one process may actually be on another process. IPC allows communication via events between all processes to resolve this issue.</p>
       <br />
-      <p><code className="inline">NOTICE</code> IPC will only work when using <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a> to <a href="https://nobuwu.github.io/sliceyjs/examples/multithreading">multithread</a> your bot</p>
+      <p className="colorOffset light"><code className="inline">NOTICE</code> IPC will only work when using <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a> to <a href="https://nobuwu.github.io/sliceyjs/examples/multithreading">multithread</a> your bot</p>
       <br />
-      <h2>Friendly Game Of Ping-Pong</h2>
+      <ScrollToLink id="examples-ipc-ping-pong"><h2 className="medium">Friendly Game Of Ping-Pong</h2></ScrollToLink>
       <div className="spacer"></div>
-      <p>In this example we will be registering listeners to send a "ping" event to every cluster and every pinged cluster will respond with "pong".</p>
+      <p className="colorOffset light">In this example we will be registering listeners to send a "ping" event to every cluster and every pinged cluster will respond with "pong".</p>
       <br />
-      <p><code className="inline">WARN</code> The more clusters you have open for this example, the more spam that the console will receive!</p>
+      <p className="colorOffset light"><code className="inline">WARN</code> The more clusters you have open for this example, the more spam that the console will receive!</p>
       <br />
       <code id="buts" className="inline">bot.js</code>
       <CodeBlock className="spacecode" language="javascript">{pingPongExample}</CodeBlock>
       <br />
-      <h2>Use Cases</h2>
+      <ScrollToLink id="examples-ipc-use-cases"><h2 className="medium">Use Cases</h2></ScrollToLink>
       <div className="spacer"></div>
-      <p>You might be thinking <i>"okay cool IPC where or why would I use this"</i>. Welllll.... its a complicated area to explain, especially for newcomers. However think of it as registering custom functions on every Cluster, say you need to get a specific guild that is not the current one you are executing the command in. Well you are going to need to use IPC to "register a function" on every cluster to attempt to get that guild otherwise you'll run into the issue of not being able to get guild even though the bot is in that guild.</p>
+      <p className="colorOffset light">You might be thinking <i>"okay cool IPC where or why would I use this"</i>. Welllll.... its a complicated area to explain, especially for newcomers. However think of it as registering custom functions on every Cluster, say you need to get a specific guild that is not the current one you are executing the command in. Well you are going to need to use IPC to "register a function" on every cluster to attempt to get that guild otherwise you'll run into the issue of not being able to get guild even though the bot is in that guild.</p>
       <br />
-      <h2>Broadcast Eval's</h2>
+      <ScrollToLink id="examples-ipc-broadcast-eval"><h2 className="medium">Broadcast Eval's</h2></ScrollToLink>
       <div className="spacer"></div>
-      <p>Its highly recommended you don't use this and just use IPC events instead... However, we also provide a broadcast evaluation method which will eval your code on every cluster and return an array of results from every cluster</p>
+      <p className="colorOffset light">Its highly recommended you don't use this and just use IPC events instead... However, we also provide a broadcast evaluation method which will eval your code on every cluster and return an array of results from every cluster</p>
       <br />
-      <p>As great and amazing this may sound, it comes with one major handicap. You cannot use scopes outside of the function you provide for the broadcast eval. What does this exactly mean? Well you cant use any variables, classes, functions, methods, etc that are declared outside of the function. See usages below for more info.</p>
+      <p className="colorOffset light">As great and amazing this may sound, it comes with one major handicap. You cannot use scopes outside of the function you provide for the broadcast eval. What does this exactly mean? Well you cant use any variables, classes, functions, methods, etc that are declared outside of the function. See usages below for more info.</p>
       <br />
-      <h3>Example</h3>
+      <ScrollToLink id="examples-ipc-broadcast-eval-example"><h3 className="medium">Example</h3></ScrollToLink>
       <br />
       <code className="inline">bot.js</code>
       <CodeBlock className="spacecode" language="javascript">{beExample}</CodeBlock>
       <br />
-      <h3>Usages</h3>
+      <ScrollToLink id="examples-ipc-broadcast-eval-usages"><h3 className="medium">Usages</h3></ScrollToLink>
       <br />
       <code className="inline">Correct</code>
       <CodeBlock className="spacecode" language="javascript">{correct}</CodeBlock>

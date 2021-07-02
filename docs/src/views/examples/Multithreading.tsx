@@ -1,5 +1,7 @@
 import React from 'react';
 import CodeBlock from '../../components/CodeBlock'
+import ScrollToLink from '../../components/ScrollToLink'
+import LinkTo from '../../components/LinkTo'
 
 const jsPack = {
   "name": "testslicey",
@@ -46,13 +48,13 @@ bot.login()`
 export default function App() {
   return (
     <div>
-      <h1 id="mtitle">Multithreading</h1>
+      <h1 id="mtitle" className="bold">Multithreading</h1>
       <br />
-      <p id="mdes">By default nodejs runs on only one thread. When attempting to handle multiple websocket connections this could become an issue as that single thread will begin to become stressed with all the incoming payloads from the websocket connections. Thus Slicey has multithreading which uses nodes <a href="https://nodejs.org/api/cluster.html#cluster_cluster">Cluster</a> module to spread your shards across multiple threads.</p>
+      <p id="mdes" className="colorOffset light">By default nodejs runs on only one thread. When attempting to handle multiple websocket connections this could become an issue as that single thread will begin to become stressed with all the incoming payloads from the websocket connections. Thus Slicey has multithreading which uses nodes <LinkTo to="https://nodejs.org/api/cluster.html#cluster_cluster">Cluster</LinkTo> module to spread your shards across multiple threads.</p>
       <br />
-      <h2>ClusterUtil</h2>
+      <ScrollToLink id="example-multithreading-basic-usage"><h2 className="medium">Basic Usage</h2></ScrollToLink>
       <div className="spacer"></div>
-      <p>Examples in javascipt, typescript is same concept just replace requires with imports.</p>
+      <p className="colorOffset light">Examples in javascipt, typescript is same concept just replace requires with imports.</p>
       <br />
       <code className="inline">package.json</code>
       <CodeBlock className="spacecode" language="json">{JSON.stringify(jsPack, undefined, 2)}</CodeBlock>
@@ -63,9 +65,9 @@ export default function App() {
       <code className="inline">bot.js</code>
       <CodeBlock className="spacecode" language="javascript">{botSimple}</CodeBlock>
       <br />
-      <h2>Woah, Slow Down....</h2>
+      <ScrollToLink id="example-multithreading-woah"><h2 className="medium">Woah, Slow Down....</h2></ScrollToLink>
       <div className="spacer"></div>
-      <p>So whats happening? Well you created a new cluster manager using <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a>. ClusterUtil then does all the needed calculations on how many shards to open for your bot and how many clusters are needed. Once that is done Slicey begins to create copies of the master process and passes the required info needed to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a> in each process. Then once the bot is ready it sends "Logged in as USERNAME". You will also notice another thing under that, that says "Cluster ID? : ". This is because when <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">ClusterUtil</a> passes the needed info to your <a href="https://nobuwu.github.io/sliceyjs/classes/clusterutil">Client</a>, it also gets passed another object. <a href="https://nobuwu.github.io/sliceyjs/classes/clusterpartial">ClusterPartial</a> which gives you access to the current process copy's info and <a href="https://nobuwu.github.io/sliceyjs/classes/ipc">IPC</a> which allows the current process copy to communicate with other process copies or rather "clusters".</p>
+      <p className="colorOffset light">So whats happening? Well you created a new cluster manager using <LinkTo to="/classes/clusterutil">ClusterUtil</LinkTo>. ClusterUtil then does all the needed calculations on how many shards to open for your bot and how many clusters are needed. Once that is done Slicey begins to create copies of the master process and passes the required info to your <LinkTo to="/classes/client">Client</LinkTo> in each process. Then once the bot is ready it sends "Logged in as USERNAME". You will also notice another thing under that, that says "Cluster ID? : ". This is because when <LinkTo to="/classes/clusterutil">ClusterUtil</LinkTo> passes the needed info to your <LinkTo to="/classes/client">Client</LinkTo>, it also gets passed another object. <LinkTo to="/classes/clusterpartial">ClusterPartial</LinkTo> which gives you access to the current process info and <LinkTo to="/sliceyjs/classes/ipc">IPC</LinkTo>. IPC enables the current process to communicate with other process or rather other "clusters".</p>
     </div>
   )
 }

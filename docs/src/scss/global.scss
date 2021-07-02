@@ -78,21 +78,23 @@ div.spacer {
 //   }
 //   @include sm
 // }
-a:link {
-  color: #698fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-a:visited {
-  color: #698fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-a:hover {
+a:any-link {
   color: #69a5ff;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  stroke: #69a5ff;
+}
+// a:visited {
+//   color: #698fff;
+//   text-decoration: none;
+//   font-weight: 600;
+//   transition: color 0.2s ease;
+// }
+a:hover {
+  color: #9369ff;
+  stroke: #9369ff;
+  transition: all 0.2s ease;
 }
 
 ul {
@@ -100,4 +102,28 @@ ul {
   li {
     margin-bottom: 5px;
   }
+}
+.spacecode {
+  margin-top: 0.6rem;
+}
+.colorOffset {
+  color: rgba($color: #fff, $alpha: 0.85);
+}
+.extra-bold {
+  font-family: 'Manrope-ExtraBold';
+}
+.bold {
+  font-family: 'Manrope-Bold';
+}
+.semi-bold {
+  font-family: 'Manrope-SemiBold';
+}
+.medium {
+  font-family: 'Manrope-Medium';
+}
+.light {
+  font-family: 'Manrope-Light';
+}
+.extra-light {
+  font-family: 'Manrope-ExtraLight';
 }

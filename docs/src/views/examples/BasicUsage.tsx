@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeBlock from '../../components/CodeBlock'
+import LinkTo from '../../components/LinkTo'
 
 const examplejs =
 `const { Intents } = require('discord.js');
@@ -36,14 +37,12 @@ bot.on('message', message => {
 
 bot.login()`
 
-import "./BasicUsage.scss"
-
 export default function App() {
   return (
     <div>
-      <h1 id="butitle">Basic Usage</h1>
+      <h1 id="butitle" className="bold">Basic Usage</h1>
       <br />
-      <p id="budes">This will create a bot using <a href="https://nobuwu.github.io/sliceyjs/classes/client">Slicey's Client</a> that will respond with "pong" whenever ping is sent in chat. Right now SliceyJS is still a work in progress so the Client will be the exact same as discord.js Client except the token is passed through the client constructor rather than the login method.</p>
+      <p id="budes" className="colorOffset light">This will create a bot using <LinkTo to="/classes/client">Slicey's Client</LinkTo> that will respond with "pong" whenever ping is sent in chat. Right now SliceyJS is still a work in progress so the Client will be the exact same as discord.js Client except the token is passed through the client constructor rather than the login method.</p>
       <br />
       <code id="bujs" className="inline">Javascript</code>
       <CodeBlock className="spacecode" language="javascript">{examplejs}</CodeBlock>

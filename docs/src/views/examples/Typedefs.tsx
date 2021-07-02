@@ -26,9 +26,9 @@ bot.login()`
 export default function App() {
   return (
     <div>
-      <h1>Typedefs</h1>
+      <h1 className="bold">Typedefs</h1>
       <br />
-      <p>When using typescript you may end up in a predicament where you need type definitions from Slicey so typescript and the IDE know what properties and methods will be on an object, and so forth.</p>
+      <p className="colorOffset light">When using typescript you may end up in a predicament where you need type definitions from Slicey so typescript and the IDE know what properties and methods will be on an object, and so forth.</p>
       <br />
       <code className="inline">index.ts</code>
       <CodeBlock className="spacecode" language="typecript">{tsInd}</CodeBlock>

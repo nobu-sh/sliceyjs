@@ -2,7 +2,6 @@ import * as React from "react"
 import { v4 as uuid } from 'uuid'
 
 import {
-  BrowserRouter as MRouter,
   Route,
   Switch,
 } from "react-router-dom"
@@ -30,18 +29,22 @@ export default function Router() {
   }
 
   return (
-    <MRouter basename={process.env.NODE_ENV === 'development' ? "/" : "/sliceyjs"}>
-      <Switch>
-        <Route exact path="/">
-          <Welcome />
-        </Route>
-        <Route exact path="/examples/basic-usage" component={Basic} />
-        <Route exact path="/examples/multithreading" component={Multi} />
-        <Route exact path="/examples/ipc" component={IPC} />
-        <Route exact path="/examples/typedefs" component={TypeDef} />
-        {classRoutes}
-        <Route path="*" component={NotFound} />
-      </Switch>
-    </MRouter>
+    <Switch>
+
+      {/* General Routes */}
+      <Route exact path="/" component={Welcome} />
+
+      {/* Example Routes */}
+      <Route exact path="/examples/basic-usage" component={Basic} />
+      <Route exact path="/examples/multithreading" component={Multi} />
+      <Route exact path="/examples/ipc" component={IPC} />
+      <Route exact path="/examples/typedefs" component={TypeDef} />
+
+      {/* Creates Route For Each Class In Slicey.json */}
+      {classRoutes}
+
+      {/* 404 */}
+      <Route path="*" component={NotFound} />
+    </Switch>
   )
 }
