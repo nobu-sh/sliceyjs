@@ -25,7 +25,18 @@ export default function App() {
     currentWidth[1](window.innerWidth)
   })
 
-  console.log(window.location.pathname)
+  // console.log(window.location)
+
+  const query = new URLSearchParams(window.location.search)
+
+  setTimeout(() => {
+    const element = document.getElementById(query.get("scrollTo"))
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  },10)
+
+  // console.log(window.location.pathname)
   return (
     <div id="main">
       <BrowserRouter basename="/sliceyjs">

@@ -29,10 +29,32 @@
       "route": "/classes/client",
       "description": "The main asset for interacting with discord.js and Discord API.",
       "extends": {
-        "class": "Client",
+        "class": "DJS.Client",
         "link": "https://discord.js.org/#/docs/main/stable/class/Client"
       },
-      "parameters": [],
+      "constructorItem": "new SliceyJS.Client(token, options)",
+      "parameters": [
+        {
+          "parameter": "token",
+          "type": {
+            "name": "string",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          },
+          "optional": false,
+          "default": "none",
+          "description": "Discord Client Auth Token"
+        },
+        {
+          "parameter": "options",
+          "type": {
+            "name": "SliceyOptions",
+            "url": "/typedefs/sliceyoptions"
+          },
+          "optional": true,
+          "default": "none",
+          "description": "Options For Client"
+        }
+      ],
       "properties": [],
       "methods": [],
       "events": []
@@ -45,7 +67,39 @@
         "class": "EventEmitter",
         "link": "https://nodejs.org/api/events.html#events_class_eventemitter"
       },
-      "parameters": [],
+      "constructorItem": "new SliceyJS.ClusterUtil(token, filePath, options)",
+      "parameters": [
+        {
+          "parameter": "token",
+          "type": {
+            "name": "string",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          },
+          "optional": false,
+          "default": "none",
+          "description": "Discord Client Auth Token"
+        },
+        {
+          "parameter": "filePath",
+          "type": {
+            "name": "string",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          },
+          "optional": false,
+          "default": "none",
+          "description": "Path To File With Client Class"
+        },
+        {
+          "parameter": "options",
+          "type": {
+            "name": "ClusterUtilOptions",
+            "url": "/typedefs/clusterutiloptions"
+          },
+          "optional": true,
+          "default": "none",
+          "description": "Discord Client Auth Token"
+        }
+      ],
       "properties": [],
       "methods": [],
       "events": []
@@ -54,7 +108,19 @@
       "name": "ClusterPartial",
       "route": "/classes/clusterpartial",
       "description": "Partial assigned to the Client that enables interaction with ClusterUtil inside a thread.",
-      "parameters": [],
+      "constructorItem": "new SliceyJS.ClusterPartial(client)",
+      "parameters": [
+        {
+          "parameter": "client",
+          "type": {
+            "name": "Client",
+            "url": "/classes/client"
+          },
+          "optional": false,
+          "default": "none",
+          "description": "Slicey Client"
+        }
+      ],
       "properties": [],
       "methods": [],
       "events": []
@@ -63,14 +129,23 @@
       "name": "IPC",
       "route": "/classes/ipc",
       "description": "The main asset to communicate to other threads/clusters",
-      "extends": {
-        "class": "EventEmitter",
-        "link": "https://nodejs.org/api/events.html#events_class_eventemitter"
-      },
-      "parameters": [],
+      "constructorItem": "new SliceyJS.IPC(clusterId)",
+      "parameters": [
+        {
+          "parameter": "clusterId",
+          "type": {
+            "name": "number",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
+          },
+          "optional": false,
+          "default": "none",
+          "description": "Current Cluster Id"
+        }
+      ],
       "properties": [],
       "methods": [],
       "events": []
     }
-  ]
+  ],
+  "typedefs": []
 }

@@ -109,6 +109,9 @@ ul {
 .colorOffset {
   color: rgba($color: #fff, $alpha: 0.85);
 }
+.heavyOffset {
+  color: rgba($color: #fff, $alpha: 0.7);
+}
 .extra-bold {
   font-family: 'Manrope-ExtraBold';
 }
@@ -126,4 +129,38 @@ ul {
 }
 .extra-light {
   font-family: 'Manrope-ExtraLight';
+}
+div.table {
+  position: relative;
+  width: 100%;
+  overflow-x: scroll;
+}
+table { //, thead, tr, th, tbody, td
+  width: 100%;
+  border: 1px rgba(255, 255, 255, 0.2) solid;
+  border-radius: 5px;
+  border-spacing: 0;
+  // border-collapse: collapse;
+}
+th {
+  padding: 1rem;
+  background-color: #5865F2;
+  font-size: 0.8rem;
+  // border-radius: 10px;
+  // background-color: red;
+  // border: 10px red solid;
+}
+th:first-child {
+  border-top-left-radius: 5px;
+}
+th:last-child {
+  border-top-right-radius: 5px;
+}
+tbody {
+  text-align: center;
+}
+td {
+  border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+  padding: 1rem;
+  font-size: 0.75rem;
 }

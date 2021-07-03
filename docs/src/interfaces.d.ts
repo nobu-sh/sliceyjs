@@ -2,6 +2,7 @@ export interface SliceyJson {
   general: SliceyJsonGeneral[]
   examples: SliceyJsonExample[]
   classes: SliceyJsonClass[]
+  typedefs: SliceyJsonTypedef[]
   [key: string]: any
 }
 
@@ -23,8 +24,26 @@ export interface SliceyJsonClass {
     class: string
     link: string
   }
-  parameters: any[]
+  constructorItem?: string
+  parameters?: SliceyJsonClassParameter[]
   properties: any[]
   methods: any[]
   events: any[]
+}
+
+export interface SliceyJsonClassParameter {
+  parameter: string
+  type: SliceyJsonClassParameterType
+  optional: boolean
+  default?: string
+  description: string
+}
+
+export interface SliceyJsonClassParameterType {
+  name: string
+  url: string
+}
+
+export interface SliceyJsonTypedef {
+
 }
