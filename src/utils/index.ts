@@ -33,8 +33,7 @@ export function createRangeArray(start: number, end: number): number[] {
   return range
 }
 export async function getGateway(token: string): Promise<DiscordBotGateway | undefined> {
-  const version = "v" + Constants.DefaultOptions.http.version
-  const url = Constants.DefaultOptions.http.api + "/" + version
+  const url = "https://discord.com/api" // DJS Removed Root Url And Versions From Constants. NGL wtf are you doing lol
   const gateway = url + Constants.Endpoints.botGateway
 
   return new Promise((res) => {

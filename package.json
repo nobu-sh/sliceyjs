@@ -1,6 +1,6 @@
 {
   "name": "sliceyjs",
-  "version": "1.1.0-beta.3",
+  "version": "1.1.0-beta.4",
   "description": "💫 SliceyJS is a utility module for DJS",
   "license": "MIT",
   "main": "lib/index.js",
@@ -74,6 +74,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "discord.js": "^13.0.0-dev.3a718d8.1625270632"
+    "discord.js": "^13.0.0-dev.a7c6678.1625427504"
   }
 }
