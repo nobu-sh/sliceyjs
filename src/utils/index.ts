@@ -1,4 +1,7 @@
-import { Constants } from 'discord.js'
+import {
+  Constants,
+  Options,
+} from 'discord.js'
 import Axios from 'axios'
 import { DiscordBotGateway } from 'types'
 export function chunk(shards: number[], totalClusters: number): number[][] {
@@ -33,8 +36,10 @@ export function createRangeArray(start: number, end: number): number[] {
   return range
 }
 export async function getGateway(token: string): Promise<DiscordBotGateway | undefined> {
-  const url = "https://discord.com/api" // DJS Removed Root Url And Versions From Constants. NGL wtf are you doing lol
-  const gateway = url + Constants.Endpoints.botGateway
+  const defaultOptions = Options.createDefaultOptions()
+  const url = defaultOptions.http.api
+  const version = defaultOptions.http.version
+  const gateway = url + `/v${version}` + Constants.Endpoints.botGateway
 
   return new Promise((res) => {
     Axios({
