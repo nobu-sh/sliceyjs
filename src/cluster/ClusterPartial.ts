@@ -220,7 +220,7 @@ class ClusterPartial implements SliceyClusterPartial {
           uptime: this._client.uptime,
           ram: process.memoryUsage().rss,
           shards,
-          largeGuilds: this._client.guilds.cache.filter(g => g.large),
+          largeGuilds: this._client.guilds.cache.filter(g => g.large).size,
           exclusiveGuilds: this._client.guilds.cache.filter(g => g.members.cache.filter(m => m.user.bot).size === 1).size,
         },
       })
