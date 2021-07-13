@@ -62,7 +62,7 @@ export default class extends React.Component<props> {
     for (const event of sliceyClass.events) {
       events.push(
         <div key={uuid()}>
-          <ScrollToLink id={`class-${sliceyClass.name}-event-${event.name}`.toLowerCase()}><h3>{event.name}</h3></ScrollToLink>
+          <ScrollToLink id={`class-${sliceyClass.name}-events-${event.name}`.toLowerCase()}><h3>{event.name}</h3></ScrollToLink>
           <br />
           <p className="colorOffset light">{event.description}</p>
           <br />
