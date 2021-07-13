@@ -55,7 +55,19 @@
           "description": "Options For Client"
         }
       ],
-      "properties": [],
+      "properties": [
+        {
+          "name": "cluster",
+          "route": "?scrollTo=class-client-prop-cluster",
+          "static": false,
+          "readonly": false,
+          "description": "Partial passed to Client that gives access to the process instances info and IPC for communication to other clusters.",
+          "type": {
+            "name": "ClusterPartial",
+            "link": "/classes/clusterpartial"
+          }
+        }
+      ],
       "methods": [],
       "events": []
     },
@@ -101,8 +113,293 @@
         }
       ],
       "properties": [],
-      "methods": [],
-      "events": []
+      "methods": [
+        {
+          "name": "launch",
+          "route": "?scrollTo=class-clusterutil-method-launch",
+          "description": "Starts ClusterUtil.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+            "promise": true
+          },
+          "parameters": []
+        },
+        {
+          "name": "broadcast",
+          "route": "?scrollTo=class-clusterutil-method-broadcast",
+          "description": "Broadcast IPCEvent to all clusters.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "message",
+              "type": {
+                "name": "IPCEvent",
+                "url": "/typedefs/ipcevent"
+              },
+              "description": "IPCEvent to send."
+            }
+          ]
+        },
+        {
+          "name": "sendTo",
+          "route": "?scrollTo=class-clusterutil-method-sendto",
+          "description": "Send IPCEvent to specific cluster.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "cluster",
+              "type": {
+                "name": "number",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
+              },
+              "description": "Id of cluster."
+            },
+            {
+              "parameter": "message",
+              "type": {
+                "name": "IPCEvent",
+                "url": "/typedefs/ipcevent"
+              },
+              "description": "IPCEvent to send."
+            }
+          ]
+        },
+        {
+          "name": "getAllStats",
+          "route": "?scrollTo=class-clusterutil-method-getallstats",
+          "description": "Get all stats of all clusters combined.",
+          "type": {
+            "name": "ClusterStats[]",
+            "url": "/typedefs/clusterstats",
+            "promise": true
+          },
+          "parameters": []
+        },
+        {
+          "name": "getClusterStats",
+          "route": "?scrollTo=class-clusterutil-method-getclusterstats",
+          "description": "Get stats from a specific cluster.",
+          "type": {
+            "name": "ClusterStats",
+            "url": "/typedefs/clusterstats",
+            "promise": true
+          },
+          "parameters": [
+            {
+              "parameter": "clusterId",
+              "type": {
+                "name": "number",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
+              },
+              "description": "Id of cluster."
+            }
+          ]
+        },
+        {
+          "name": "isMaster",
+          "route": "?scrollTo=class-clusterutil-method-ismaster",
+          "description": "Check if the current process is the master process or not.",
+          "type": {
+            "name": "boolean",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"
+          },
+          "parameters": []
+        },
+        {
+          "name": "broadcastEval",
+          "route": "?scrollTo=class-clusterutil-method-broadcasteval",
+          "description": "Broadcast a callback to all clusters to be evaled.",
+          "type": {
+            "name": "BroadcastEvalClusterReturn[]",
+            "url": "/typedefs/broadcastevalclusterreturn",
+            "promise": true
+          },
+          "parameters": [
+            {
+              "parameter": "callback",
+              "type": {
+                "name": "BroadcastEvalCallback",
+                "url": "/typedefs/broadcastevalcallback"
+              },
+              "description": "Callback to eval."
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "info",
+          "route": "?scrollTo=class-clusterutil-events-info",
+          "description": "Emits on general non cluster specific info being emitted.",
+          "parameters": [
+            {
+              "parameter": "info",
+              "description": "Stirng containing info.",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              }
+            }
+          ]
+        },
+        {
+          "name": "error",
+          "route": "?scrollTo=class-clusterutil-events-error",
+          "description": "Emits when a non cluster specific error occurs.",
+          "parameters": [
+            {
+              "parameter": "error",
+              "description": "Error info.",
+              "type": {
+                "name": "Error or string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"
+              }
+            }
+          ]
+        },
+        {
+          "name": "clusterDeath",
+          "route": "?scrollTo=class-clusterutil-events-clusterdeath",
+          "description": "Emits when a cluster dies/is killed. Slicey handles deaths automatically and restarts the cluster. Therefore this event is not important.",
+          "parameters": [
+            {
+              "parameter": "ClusterDeathEvent",
+              "description": "Cluster death info.",
+              "type": {
+                "name": "ClusterDeathEvent",
+                "url": "/typedefs/clusterdeathevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "clusterError",
+          "route": "?scrollTo=class-clusterutil-events-clustererror",
+          "description": "Emits on cluster error. If the error kills the process slicey should automatically restart the cluster.",
+          "parameters": [
+            {
+              "parameter": "ClusterErrorEvent",
+              "description": "Cluster error info",
+              "type": {
+                "name": "ClusterErrorEvent",
+                "url": "/typedefs/clustererrorevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "clusterWarn",
+          "route": "?scrollTo=class-clusterutil-events-clusterwarn",
+          "description": "Emits on cluster warn, usually nothing important.",
+          "parameters": [
+            {
+              "parameter": "ClusterWarnEvent",
+              "description": "Cluster warn info.",
+              "type": {
+                "name": "ClusterWarnEvent",
+                "url": "/typedefs/clusterwarnevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "clusterInfo",
+          "route": "?scrollTo=class-clusterutil-events-clusterinfo",
+          "description": "Emits on general cluster info.",
+          "parameters": [
+            {
+              "parameter": "ClusterInfoEvent",
+              "description": "Cluster info.",
+              "type": {
+                "name": "ClusterInfoEvent",
+                "url": "/typedefs/clusterinfoevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "shardDisconnect",
+          "route": "?scrollTo=class-clusterutil-events-sharddisconnect",
+          "description": "Emits when a shard disconnects on some cluster.",
+          "parameters": [
+            {
+              "parameter": "ShardDisconnectEvent",
+              "description": "Shard disconnect info",
+              "type": {
+                "name": "ShardDisconnectEvent",
+                "url": "/typedefs/sharddisconnectevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "shardReady",
+          "route": "?scrollTo=class-clusterutil-events-shardready",
+          "description": "Emits when a shard is ready.",
+          "parameters": [
+            {
+              "parameter": "ShardReadyEvent",
+              "description": "Shard ready info.",
+              "type": {
+                "name": "ShardReadyEvent",
+                "url": "/typedefs/shardreadyevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "shardResume",
+          "route": "?scrollTo=class-clusterutil-events-shardresume",
+          "description": "Emits when a shard has resumed successfully.",
+          "parameters": [
+            {
+              "parameter": "ShardResumeEvent",
+              "description": "Shard resume info.",
+              "type": {
+                "name": "ShardResumeEvent",
+                "url": "/typedefs/shardresumeevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "shardReconnecting",
+          "route": "?scrollTo=class-clusterutil-events-shardreconnecting",
+          "description": "Emits when a shard has disconnected and is attempting to reconnect.",
+          "parameters": [
+            {
+              "parameter": "ShardReconnectingEvent",
+              "description": "Shard reconnecting info.",
+              "type": {
+                "name": "ShardReconnectingEvent",
+                "url": "/typedefs/shardreconnectingevent"
+              }
+            }
+          ]
+        },
+        {
+          "name": "shardError",
+          "route": "?scrollTo=class-clusterutil-events-sharderror",
+          "description": "Emits when a shard has errored out.",
+          "parameters": [
+            {
+              "parameter": "ShardErrorEvent",
+              "description": "Shard error info.",
+              "type": {
+                "name": "ShardErrorEvent",
+                "url": "/typedefs/sharderrorevent"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "ClusterPartial",
@@ -121,8 +418,86 @@
           "description": "Slicey Client"
         }
       ],
-      "properties": [],
-      "methods": [],
+      "properties": [
+        {
+          "name": "totalShards",
+          "route": "?scrollTo=class-clusterpartial-prop-totalshards",
+          "static": false,
+          "readonly": true,
+          "description": "Total amount of shards passed through ClusterUtil config.",
+          "type": {
+            "name": "number",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          }
+        },
+        {
+          "name": "firstShardId",
+          "route": "?scrollTo=class-clusterpartial-prop-firstshardid",
+          "static": false,
+          "readonly": true,
+          "description": "Id of first shard on current cluster.",
+          "type": {
+            "name": "number",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          }
+        },
+        {
+          "name": "lastShardId",
+          "route": "?scrollTo=class-clusterpartial-prop-lastshardid",
+          "static": false,
+          "readonly": true,
+          "description": "Id of last shard on current cluster.",
+          "type": {
+            "name": "number",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          }
+        },
+        {
+          "name": "id",
+          "route": "?scrollTo=class-clusterpartial-prop-id",
+          "static": false,
+          "readonly": true,
+          "description": "Id of the current cluster.",
+          "type": {
+            "name": "number",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          }
+        },
+        {
+          "name": "totalClusters",
+          "route": "?scrollTo=class-clusterpartial-prop-totalclusters",
+          "static": false,
+          "readonly": true,
+          "description": "Total amount of clusters passed through ClusterUtil config.",
+          "type": {
+            "name": "number",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+          }
+        },
+        {
+          "name": "ipc",
+          "route": "?scrollTo=class-clusterpartial-prop-ipc",
+          "static": false,
+          "readonly": true,
+          "description": "IPC instace for cluster. Used to communicate with other cluster intances.",
+          "type": {
+            "name": "IPC",
+            "link": "/classes/ipc"
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "start",
+          "route": "?scrollTo=class-clusterpartial-method-start",
+          "description": "There is no need to ever call this method.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": []
+        }
+      ],
       "events": []
     },
     {
@@ -143,7 +518,198 @@
         }
       ],
       "properties": [],
-      "methods": [],
+      "methods": [
+        {
+          "name": "on",
+          "route": "?scrollTo=class-ipc-method-on",
+          "description": "On event emitted, execute callback with parameters passed through event.",
+          "type": {
+            "name": "IPCEventListener",
+            "url": "/typedefs/IPCEventListener"
+          },
+          "parameters": [
+            {
+              "parameter": "event",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              },
+              "description": "Events name."
+            },
+            {
+              "parameter": "callback",
+              "type": {
+                "name": "callback_function",
+                "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+                "params": [
+                  {
+                    "name": "...content",
+                    "type": "unknown[]",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+                  }
+                ]
+              },
+              "description": "Callback to execute."
+            }
+          ]
+        },
+        {
+          "name": "removeListener",
+          "route": "?scrollTo=class-ipc-method-removelistener",
+          "description": "Remove a specfic listener from IPC.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "event",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              },
+              "description": "Name of event."
+            },
+            {
+              "parameter": "callback",
+              "type": {
+                "name": "callback_function",
+                "url": "https://developer.mozilla.org/en-US/docs/Glossary/Callback_function",
+                "params": [
+                  {
+                    "name": "...content",
+                    "type": "unknown[]",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+                  }
+                ]
+              },
+              "description": "Callback that was being executed"
+            }
+          ]
+        },
+        {
+          "name": "removeEventListeners",
+          "route": "?scrollTo=class-ipc-method-removeeventlisteners",
+          "description": "Remove all listeners for a specific event.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "event",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              },
+              "description": "Name of event."
+            }
+          ]
+        },
+        {
+          "name": "removeAllListeners",
+          "route": "?scrollTo=class-ipc-method-removealllisteners",
+          "description": "Remove all listeners on IPC.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": []
+        },
+        {
+          "name": "send",
+          "route": "?scrollTo=class-ipc-method-send",
+          "description": "Send event to all clusters.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "event",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              },
+              "description": "Name of event."
+            },
+            {
+              "parameter": "...content",
+              "type": {
+                "name": "unknown[]",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+              },
+              "description": "Parameters to pass through."
+            }
+          ]
+        },
+        {
+          "name": "sendTo",
+          "route": "?scrollTo=class-ipc-method-sendto",
+          "description": "Send event to certain cluster.",
+          "type": {
+            "name": "void",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"
+          },
+          "parameters": [
+            {
+              "parameter": "cluster",
+              "type": {
+                "name": "number",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"
+              },
+              "description": "Id of cluster."
+            },
+            {
+              "parameter": "event",
+              "type": {
+                "name": "string",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"
+              },
+              "description": "Name of event."
+            },
+            {
+              "parameter": "...content",
+              "type": {
+                "name": "unknown[]",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"
+              },
+              "description": "Parameters to pass through."
+            }
+          ]
+        },
+        {
+          "name": "getAllStats",
+          "route": "?scrollTo=class-ipc-method-getallstats",
+          "description": "Get all stats of all clusters combined.",
+          "type": {
+            "name": "ClusterStats[]",
+            "url": "/typedefs/clusterstats",
+            "promise": true
+          },
+          "parameters": []
+        },
+        {
+          "name": "broadcastEval",
+          "route": "?scrollTo=class-ipc-method-broadcasteval",
+          "description": "Broadcast a callback to all clusters to be evaled.",
+          "type": {
+            "name": "BroadcastEvalClusterReturn[]",
+            "url": "/typedefs/broadcastevalclusterreturn",
+            "promise": true
+          },
+          "parameters": [
+            {
+              "parameter": "callback",
+              "type": {
+                "name": "BroadcastEvalCallback",
+                "url": "/typedefs/broadcastevalcallback"
+              },
+              "description": "Callback to eval."
+            }
+          ]
+        }
+      ],
       "events": []
     }
   ],

@@ -11,7 +11,7 @@ export interface tableProps {
 function RenderHeaders(props: { headers: string[] }) {
   const headerArr = []
   for (const header of props.headers) {
-    headerArr.push(<th key={uuid()}>{header}</th>)
+    headerArr.push(<th className="larger" key={uuid()}>{header}</th>)
   }
   return (
     <thead>

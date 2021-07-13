@@ -26,9 +26,53 @@ export interface SliceyJsonClass {
   }
   constructorItem?: string
   parameters?: SliceyJsonClassParameter[]
-  properties: any[]
-  methods: any[]
-  events: any[]
+  properties: SliceyJsonClassProperty[]
+  methods: SliceyJsonClassMethod[]
+  events: SliceyJsonClassEvent[]
+}
+
+export interface SliceyJsonClassProperty {
+  name: string
+  route: string
+  static?: boolean
+  readonly?: boolean
+  type: {
+    name: string
+    link: string
+  }
+  description: string
+}
+export interface SliceyJsonClassMethod {
+  name: string
+  route: string
+  description: string
+  type: {
+    name: string
+    url: string
+    promise?: boolean
+  }
+  parameters: SliceyJsonClassMethodParameter[]
+}
+
+export interface SliceyJsonClassMethodParameter {
+  parameter: string
+    description: string
+    type: {
+      name: string
+      url: string
+      params?: {
+        name: string
+        type: string
+        url: string
+      }[]
+    }
+} 
+
+export interface SliceyJsonClassEvent {
+  name: string
+  route: string
+  description: string
+  parameters: SliceyJsonClassMethodParameter[]
 }
 
 export interface SliceyJsonClassParameter {

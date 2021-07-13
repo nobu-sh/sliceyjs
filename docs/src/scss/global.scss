@@ -67,7 +67,14 @@ div.spacer {
   margin-bottom: 1rem;
   background-color: rgba($color: #fff, $alpha: 0.15);
 }
-
+div.advancedSpacer {
+  width: 100%;
+  height: 2px;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  background: rgb(255,255,255);
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 60%);
+}
 // h1 {
 //   font-size: 1.7vw;
 //   @include lg {
@@ -146,9 +153,13 @@ th {
   padding: 1rem;
   background-color: #5865F2;
   font-size: 0.8rem;
+  width: calc(100% / 3);
   // border-radius: 10px;
   // background-color: red;
   // border: 10px red solid;
+  &.larger {
+    width: calc(100% / 5);
+  }
 }
 th:first-child {
   border-top-left-radius: 5px;

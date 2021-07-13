@@ -1,0 +1,66 @@
+.dropdowntsx {
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+  flex-wrap: nowrap;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  .cheverontsx {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+    &.rotatetsx {
+      transform: rotate(0deg);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+.dropdowncontenttsx {
+  display: none;
+  transition: display 0.3s ease;
+  padding-left: 0.2rem;
+  &.opentsx {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    transition: display 0.3s ease;
+  }
+}
+.scoped-atsx {
+  margin-top: 0.5rem;
+  font-size: 95%;
+  font-weight: 400;
+}
+// .scoped-atsx:link {
+//   margin-top: 0.5rem;
+//   font-size: 95%;
+//   font-weight: 400;
+//   color: rgba($color: #ff69b4, $alpha: 0.7);
+//   transition: color 0.3s ease;
+//   &:hover {
+//     transition: color 0.3s ease;
+//     color: #ff69b4;
+//   }
+//   &.current {
+//     color: #ff69b4;
+//   }
+// }
+// .scoped-atsx:visited {
+//   margin-top: 0.5rem;
+//   font-size: 95%;
+//   font-weight: 400;
+//   color: rgba($color: #ff69b4, $alpha: 0.7);
+//   transition: color 0.3s ease;
+//   &:hover {
+//     transition: color 0.3s ease;
+//     color: #ff69b4;
+//   }
+//   &.current {
+//     color: #ff69b4;
+//   }
+// }
+.hoverCursortsx:hover {
+  cursor: pointer;
+}
