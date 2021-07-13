@@ -65,7 +65,7 @@ export default class Dropdown extends React.Component<dropdownprops, dropdownsta
         current = true
       }
       items.push(
-        <a key={uuid()} href={item.route} className={`scoped-atsx dropdown-link ${ current ? "currenttsx" : "" }`}>{item.name}</a>
+        <a key={uuid()} href={`/sliceyjs${item.route}`} className={`scoped-atsx dropdown-link ${ current ? "currenttsx" : "" }`}>{item.name}</a>
       )
     }
 
