@@ -47,7 +47,7 @@ export default function App() {
                 <br />
                 <h2 id="welcome-installation" className="medium">Installation</h2>
                 <div className="spacer" />
-                <p id="welcome-installation-node-version" className="colorOffset"><b>Node.js 14.0.0+ is required.</b></p>
+                <p id="welcome-installation-node-version" className="colorOffset"><b>Node.js 16.6.0+ is required.</b></p>
                 <CodeBlock className="npm-install" language="powershell">npm install sliceyjs</CodeBlock>
                 <CodeBlock language="powershell">npm install discord.js</CodeBlock>
                 <br />

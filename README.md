@@ -25,7 +25,7 @@ SliceyJS is a utility addon for the widely used [Discord API](https://discord.co
 `NOTICE`: SliceyJS is still a WIP. It only offers clustering and sharding at the moment!
       
 ## Installation
-**Node.js 14.0.0 or newer is required.**
+**Node.js 16.6.0 or newer is required.**
 
 ```sh-session
 npm i discord.js
