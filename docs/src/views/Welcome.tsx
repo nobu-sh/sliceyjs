@@ -13,7 +13,7 @@ bot.on('ready', () => {
   console.log(\`Logged in as \${bot.user.tag}!\`);
 });
 
-bot.on('message', message => {
+bot.on('messageCreate', message => {
   if (message.content === 'ping') {
     message.channel.send('pong');
   }
