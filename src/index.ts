@@ -2,8 +2,8 @@ try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const djs: typeof import('discord.js') = require('discord.js')
   const version = djs.version
-  if (parseInt(version.split(".")[0]) < 12) {
-    throw Error("Version mismatch discord.js >=12.0.0 required")
+  if (parseInt(version.split(".")[0]) < 13) {
+    throw Error("Version mismatch discord.js >=13.0.0 required")
   }
 } catch (error) {
   console.log("Discord.js is required to use this library!\n", error)
