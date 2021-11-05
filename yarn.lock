@@ -569,7 +569,7 @@
   "resolved" "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.24.0.tgz"
   "version" "0.24.0"
 
-"discord.js@^13.1.0":
+"discord.js@^13.3.1":
   "integrity" "sha512-zn4G8tL5+tMV00+0aSsVYNYcIfMSdT2g0nudKny+Ikd+XKv7m6bqI7n3Vji0GIRqXDr5ArPaw+iYFM2I1Iw3vg=="
   "resolved" "https://registry.npmjs.org/discord.js/-/discord.js-13.3.1.tgz"
   "version" "13.3.1"

@@ -36,7 +36,7 @@ export function createRangeArray(start: number, end: number): number[] {
   return range
 }
 export async function getGateway(token: string): Promise<DiscordBotGateway | undefined> {
-  const defaultOptions = Options.createDefaultOptions()
+  const defaultOptions = Options.createDefault()
   const url = defaultOptions.http.api
   const version = defaultOptions.http.version
   const gateway = url + `/v${version}` + Constants.Endpoints.botGateway

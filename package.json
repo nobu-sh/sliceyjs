@@ -50,7 +50,7 @@
     "git": "git add . && git commit -m",
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix",
-    "prepack": "yarn run build && yarn run gen:esm",
+    "prepack": "npm run build && npm run gen:esm",
     "precommitlint": "echo 'pre-commit running linter...' && exit 0",
     "precommitbuild": "echo 'pre-commit building docs...' && exit 0",
     "push": "npm run deploy:docs && git push"

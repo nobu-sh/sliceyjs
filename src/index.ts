@@ -9,7 +9,7 @@ try {
   console.log("Discord.js is required to use this library!\n", error)
 }
 const nodev = process.version.replace("v", "").split(".")
-if (parseInt(nodev[0]) > 16) {
+if (parseInt(nodev[0]) > 15) {
   if (parseInt(nodev[0]) < 17 && parseInt(nodev[1]) < 6) {
     throw Error("Node >=16.6.0 is required to use this package!")
   }
