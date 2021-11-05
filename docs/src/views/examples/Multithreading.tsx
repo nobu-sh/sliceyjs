@@ -21,18 +21,17 @@ const manager = new ClusterUtil('Legit Token', path.resolve('./bot.js'), {
   ignoreClusterError: true
 })
 
-manager.on('info', (info) => {
-  console.log("[INFO]:", info)
-})
-  .on('error', (err) => {
-    console.error("[ERROR]:", error)
-  })
-  .on('clusterInfo', (cinfo) => {
-    console.log("[CLUSTERINFO]:", cinfo)
-  })
-  .on('shardReady', (shard) => {
-    console.log("[SHARDREADY]:", shard)
-  })
+manager.on('info', (e) => console.log('[INFO]', e))
+  .on('error', (e) => console.log('[ERROR]', e))
+  .on('clusterDeath', (e) => console.log('[CLUSTER_DEATH]', e))
+  .on('clusterError', (e) => console.log('[CLUSTER_ERROR]', e))
+  .on('clusterInfo', (e) => console.log('[CLUSTER_INFO]', e))
+  .on('clusterWarn', (e) => console.log('[CLUSTER_WARN]', e))
+  .on('shardDisconnect', (e) => console.log('[SHARD_DISCONNECT]', e))
+  .on('shardError', (e) => console.log('[SHARD_ERROR]', e))
+  .on('shardReady', (e) => console.log('[SHARD_READY]', e))
+  .on('shardReconnecting', (e) => console.log('[SHARD_RECONNECTING]', e))
+  .on('shardResume', (e) => console.log('[SHARD_RESUME]', e))
 
 manager.launch()`
 const botSimple = 
@@ -64,6 +63,8 @@ export default function App() {
       <br />
       <code className="inline">bot.js</code>
       <CodeBlock className="spacecode" language="javascript">{botSimple}</CodeBlock>
+      <br />
+      <p id="mdes" className="colorOffset light"><code className="inline">WARN</code> Please be sure when doing multithreading you use Slicey's client. If you use DJS's client this will not work!</p>
       <br />
       <ScrollToLink id="example-multithreading-woah"><h2 className="medium">Woah, Slow Down....</h2></ScrollToLink>
       <div className="spacer"></div>
