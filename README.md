@@ -11,8 +11,6 @@
   </p>
 </p>
 
-
-      
 ## About
 SliceyJS is a utility addon for the widely used [Discord API](https://discord.com/developers/docs/intro) module, [discord.js](https://github.com/discordjs/discord.js). SliceyJS adds a handful of features the average bot developer might find useful or helpful when attempting to scale their bot to production!
 
