@@ -56,8 +56,8 @@ bot.login()
 ```
 ## Links
 
-- [Documentation](https://nobuwu.github.io/sliceyjs/)
+- [Documentation](https://nobu-sh.github.io/sliceyjs/)
 - [Discord Dev Portal](https://discord.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/#/)
-- [Github](https://github.com/nobuwu/sliceyjs)
+- [Github](https://github.com/nobu-sh/sliceyjs)
 - [NPM](https://www.npmjs.com/package/sliceyjs)
